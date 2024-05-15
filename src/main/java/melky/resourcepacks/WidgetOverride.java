@@ -3,14 +3,150 @@ package melky.resourcepacks;
 import com.google.common.collect.ImmutableMultimap;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import static melky.resourcepacks.WidgetOverride.ScriptId.*;
-import static melky.resourcepacks.WidgetOverride.ComponentId.*;
-import static melky.resourcepacks.WidgetOverride.ArrayIndex.*;
-
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.ACHIEVEMENT_DIARY;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.CHATBOX_SEPARATOR_LINE;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.FORESTRY_BAG;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.FORESTRY_SHOP;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.FORTIS_COLOSSEUM_LOOT_TAB;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.FORTIS_COLOSSEUM_TAB;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.GE_BORDER;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.GIANTS_FOUNDRY;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.ITEMS_KEPT_ON_DEATH;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.MAKE_ALL_CHATBOX;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.PVP_ARENA_BORDER;
+import static melky.resourcepacks.WidgetOverride.ArrayIndex.SKILL_GUIDE;
+import static melky.resourcepacks.WidgetOverride.ComponentId.ACCOUNT_MANAGEMENT_SEPARATOR_LINE_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.ACTIVITY_ADVISOR_TAB_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.BANK_OPTIONS_BORDER_FILLERS_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.BANK_OPTIONS_BORDER_TAB_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.BANK_TAB_UNDERLINE_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.BONDS_POUCH_BORDER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.BOUNTY_HUNTER_OVERLAY_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CHANNEL_TAB_SEPARATOR_LINE_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CHAT_CHANNEL_SETUP_BORDER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CHAT_CHANNEL_SETUP_BORDER_RIGHT_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CHAT_CHANNEL_SETUP_BORDER_TOP_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CLAN_CHAT_BORDER_FULL_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CLAN_GUEST_CHAT_BORDER_FULL_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.COLLECTION_LOG_BORDER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.COMBAT_ACHIEVEMENTS_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.COMBAT_ACHIEVEMENTS_DROPDOWN_BUTTON_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.COMBAT_ACHIEVEMENTS_DROPDOWN_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.COMBAT_CHOOSE_SPELL_BACKGROUND_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.COMBAT_CHOOSE_SPELL_INNER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.COMBAT_CHOOSE_SPELL_OUTER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CRAFT_GOLD_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.CRAFT_SILVER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.EXPLORERS_RING_ALCHEMY_BORDER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.EXP_DROPS_BORDER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FORESTRY_BAG_BUTTON_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FORESTRY_SHOP_BUTTON_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FORTIS_COLOSSEUM_BORDER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FORTIS_COLOSSEUM_LOOT_BORDER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FORTIS_COLOSSEUM_LOOT_TAB_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FORTIS_COLOSSEUM_MODIFIERS_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FORTIS_COLOSSEUM_TAB_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FRIENDS_CHAT_BORDER_FULL_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FRIENDS_CHAT_BORDER_TOP_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.FRIENDS_TOP_LINE_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.GIANTS_FOUNDRY_SHOP_BUTTON_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.GRAND_EXCHANGE_BORDER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.GRAND_EXCHANGE_BUY_SEARCH_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.GRAND_EXCHANGE_OFFER_OUTLINE_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.IGNORE_TOP_LINE_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.ITEMS_KEPT_ON_DEATH_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.LMS_KDA_INFOBOX_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.LMS_SETTINGS_STAT_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.LOOTING_BAG_BANK_BORDER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.LOOTING_BAG_BORDER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.MAKE_ALL_BACKGROUND_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.MINIGAMES_TAB_BORDER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.MYCELIUM_TRANSPORT_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.OPTIONS_TAB_SEPARATOR_LINE_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.PVP_ARENA_BORDER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.QUEST_TAB_TABS_UNDERLINE_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.QUICK_PRAYER_BACKGROUND_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.RAIDS_POINTS_INFOBOX_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.RUNE_POUCH_BORDER_INNER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.RUNE_POUCH_BORDER_OUTER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.RUNE_POUCH_CONFIGURE_BORDER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.RUNE_POUCH_INVENTORY_BORDER_INNER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.RUNE_POUCH_INVENTORY_BORDER_OUTER_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SEED_VAULT_BOTTOM_SEPARATOR_LINE_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SKILL_GUIDE_BUTTON_BORDER_FILL_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SKILL_GUIDE_SCROLL_BORDER_FILL_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SMITHING_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SOUL_WARS_SHOP_BOTTOM_SEPARATOR_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SOUL_WARS_SHOP_TAB_BOTTOM_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SOUL_WARS_SHOP_TAB_TOP_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SOUL_WARS_SHOP_TOP_SEPARATOR_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.SPELL_INFOBOX_COMPONENT_ID;
+import static melky.resourcepacks.WidgetOverride.ComponentId.STASH_UNIT_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.TOA_RAID_PARTY_SEPARATOR_LINE_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.WORLD_MAP_BORDER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ComponentId.WORLD_SWITCHER_COMPONENT_IDS;
+import static melky.resourcepacks.WidgetOverride.ScriptId.ACCOUNT_MANAGEMENT_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.ACHIEVEMENT_DIARY_ENTRY_REBUILD;
+import static melky.resourcepacks.WidgetOverride.ScriptId.ACTIVITY_ADVISOR_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.ANVIL_SMITHING_ITEMS_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.AUTOCAST_SETUP;
+import static melky.resourcepacks.WidgetOverride.ScriptId.BANK_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.BANK_SETTINGS_OPEN;
+import static melky.resourcepacks.WidgetOverride.ScriptId.BONDS_POUCH_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.BOUNTY_HUNTER_OVERLAY_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.CHANNEL_TAB_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.CHATBOX_BACKGROUND;
+import static melky.resourcepacks.WidgetOverride.ScriptId.CLAN_CHAT_TAB_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.CLAN_GUEST_CHAT_TAB_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.COLLECTION_LOG_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.COMBAT_ACHIEVEMENTS_DROPDOWN_BUTTON_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.COMBAT_ACHIEVEMENTS_DROPDOWN_MENU_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.COMBAT_ACHIEVEMENT_BOSS_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.COMBAT_ACHIEVEMENT_REWARDS_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.CRAFTING_GOLD_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.CRAFTING_SILVER_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.DEATHKEEP_REDRAW;
+import static melky.resourcepacks.WidgetOverride.ScriptId.FORESTRY_BAG_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.FORESTRY_SHOP_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.FORTIS_COLOSSEUM_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.FORTIS_COLOSSEUM_LOOT_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.FORTIS_COLOSSEUM_MODIFIERS_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.FRIENDS_CHAT_BUILD;
+import static melky.resourcepacks.WidgetOverride.ScriptId.FRIEND_UPDATE;
+import static melky.resourcepacks.WidgetOverride.ScriptId.GE_OFFER_BORDER_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.GE_SEARCH_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.GIANTS_FOUNDRY_SHOP_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.IGNORE_UPDATE;
+import static melky.resourcepacks.WidgetOverride.ScriptId.LOOTING_BAG_BANK_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.LOOTING_BAG_TAB_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MAKE_ALL_ITEM_HOVER;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MAKE_ALL_ITEM_HOVER_ALT_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MAKE_ALL_ITEM_OP;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MAKE_ALL_QUANTITY_DRAW;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MIME_SHOW_BUTTONS_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MINIGAMES_TAB_REBUILD;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MISC_BORDER_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.MYCELIUM_TRANSPORT_BUTTON_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.PVP_ARENA_DROPDOWN_MENU_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.PVP_ARENA_SUPPLIES_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.QUEST_TAB_TABS_DRAW;
+import static melky.resourcepacks.WidgetOverride.ScriptId.RAIDS_POINTS_INFOBOX_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.RUNE_POUCH_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.SEED_VAULT_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.SEED_VAULT_SEARCH_BUTTON_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.SETTINGS_SIDE_TABS_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.SOUL_WARS_SHOP_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.SPELL_INFOBOX_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.STASH_UNIT_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.TOA_RAID_PARTY_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.UPDATED_SKILL_GUIDE_MENU_BUTTON_CLICKED;
+import static melky.resourcepacks.WidgetOverride.ScriptId.WORLDMAP_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.WORLD_MAP_DROPDOWN_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.WORLD_SWITCHER_INIT;
+import static melky.resourcepacks.WidgetOverride.ScriptId.XPDROPS_SHOW_PANEL;
+import net.runelite.api.ScriptID;
 import net.runelite.api.annotations.Interface;
 import net.runelite.api.widgets.ComponentID;
-import net.runelite.api.ScriptID;
 
 @Getter
 @RequiredArgsConstructor
@@ -190,7 +326,8 @@ public enum WidgetOverride
 	SKILL_GUIDE_SCROLL_BORDER_FILL_COLOR(UPDATED_SKILL_GUIDE_MENU_BUTTON_CLICKED, 0x726451, SKILL_GUIDE_SCROLL_BORDER_FILL_COMPONENT_ID, 0),
 	SKILL_GUIDE_BUTTON_BORDER_FILL_COLOR(UPDATED_SKILL_GUIDE_MENU_BUTTON_CLICKED, 0x726451, SKILL_GUIDE_BUTTON_BORDER_FILL_COMPONENT_ID, SKILL_GUIDE),
 
-	RAIDS_POINTS_INFOBOX_OUTER_BORDER(RAIDS_POINTS_INFOBOX_INIT, 0x383023, RAIDS_POINTS_INFOBOX_COMPONENT_ID, 1),//4730 or 1510
+	//4730 or 1510
+	RAIDS_POINTS_INFOBOX_OUTER_BORDER(RAIDS_POINTS_INFOBOX_INIT, 0x383023, RAIDS_POINTS_INFOBOX_COMPONENT_ID, 1),
 	RAIDS_POINTS_INFOBOX_INNER_BORDER(RAIDS_POINTS_INFOBOX_INIT, 0x5a5245, RAIDS_POINTS_INFOBOX_COMPONENT_ID, 2),
 
 	MIME_SHOW_CHATBOX_BUTTON_HOVERED(MIME_SHOW_BUTTONS_INIT, 0x403020, MAKE_ALL_BACKGROUND_COMPONENT_IDS[3], 0),
@@ -238,8 +375,8 @@ public enum WidgetOverride
 	FORTIS_COLOSSEUM_MODIFIER_BUTTON_SELECTED(FORTIS_COLOSSEUM_MODIFIERS_INIT, 0xff981f, FORTIS_COLOSSEUM_MODIFIERS_COMPONENT_IDS, 0),
 	FORTIS_COLOSSEUM_MODIFIER_BUTTON_HOVERED(FORTIS_COLOSSEUM_MODIFIERS_INIT, 0xb8a182, FORTIS_COLOSSEUM_MODIFIERS_COMPONENT_IDS, 0),
 
-	FORTIS_COLOSSEUM_LOOT_TAB_BORDER_COLOR(FORTIS_COLOSSEUM_LOOT_INIT, 0x726451, FORTIS_COLOSSEUM_LOOT_TAB_COMPONENT_ID , FORTIS_COLOSSEUM_LOOT_TAB),
-	FORTIS_COLOSSEUM_LOOT_BORDER_COLOR(FORTIS_COLOSSEUM_LOOT_INIT, 0x726451, FORTIS_COLOSSEUM_LOOT_BORDER_COMPONENT_ID , 0),
+	FORTIS_COLOSSEUM_LOOT_TAB_BORDER_COLOR(FORTIS_COLOSSEUM_LOOT_INIT, 0x726451, FORTIS_COLOSSEUM_LOOT_TAB_COMPONENT_ID, FORTIS_COLOSSEUM_LOOT_TAB),
+	FORTIS_COLOSSEUM_LOOT_BORDER_COLOR(FORTIS_COLOSSEUM_LOOT_INIT, 0x726451, FORTIS_COLOSSEUM_LOOT_BORDER_COMPONENT_ID, 0),
 
 	COMBAT_ACHIEVEMENTS_DROPDOWN_MENU_BORDER_OUTER(COMBAT_ACHIEVEMENTS_DROPDOWN_MENU_INIT, 0xe0e0c, COMBAT_ACHIEVEMENTS_DROPDOWN_COMPONENT_IDS, 1),
 	COMBAT_ACHIEVEMENTS_DROPDOWN_MENU_BORDER_INNER(COMBAT_ACHIEVEMENTS_DROPDOWN_MENU_INIT, 0x474745, COMBAT_ACHIEVEMENTS_DROPDOWN_COMPONENT_IDS, 2),
@@ -485,8 +622,8 @@ public enum WidgetOverride
 			{50724875, 50724877, 50724879} //TOA_RAID_PARTY_TAB_SEPARATOR_LINE_SHADOW
 		};
 		static final int[][] EXP_DROPS_BORDER_COMPONENT_IDS = {
-			{7995400, 7995405},//XPDROPS_BORDER_INNER
-			{7995399, 7995404}//XPDROPS_BORDER_OUTER
+			{7995400, 7995405}, //XPDROPS_BORDER_INNER
+			{7995399, 7995404} //XPDROPS_BORDER_OUTER
 		};
 		static final int[][] MINIGAMES_TAB_BORDER_COMPONENT_IDS = {
 			{4980743, 4980744, 4980745, 4980749, 4980750}, //MINIGAMES_TAB_BORDER_INNER
@@ -497,8 +634,8 @@ public enum WidgetOverride
 			262148, 262149, 262156
 		};
 		static final int[][] WORLD_SWITCHER_COMPONENT_IDS = {
-			{4521992, 4521993},//WORLD_SWITCH_TOP_AND_BOTTOM_LINES / WORLD_SWITCHER_BOTTOM_LINE
-			{4521991}//WORLD_SWITCHER_BACKGROUND_COLOR
+			{4521992, 4521993}, //WORLD_SWITCH_TOP_AND_BOTTOM_LINES / WORLD_SWITCHER_BOTTOM_LINE
+			{4521991} //WORLD_SWITCHER_BACKGROUND_COLOR
 		};
 		static final int[] WORLD_MAP_BORDER_COMPONENT_IDS = {
 			38993945, 38993946, 38993953
@@ -532,9 +669,9 @@ public enum WidgetOverride
 			32309264, 32309265, 32309267, 32309269, 32309271, 32309273, 32309275
 		};
 		static final int[][] BONDS_POUCH_BORDER_COMPONENT_IDS = {
-			{4259843, 4259845},//BONDS_POUCH_TAB_UNDERLINE
-			{4259844, 4259846},//BONDS_POUCH_TAB_UNDERLINE_SHADOW
-			{4259855, 4259856},//BONDS_POUCH_SEPERATOR_LINE & BONDS_POUCH_SEPERATOR_LINE_SHADOW
+			{4259843, 4259845}, //BONDS_POUCH_TAB_UNDERLINE
+			{4259844, 4259846}, //BONDS_POUCH_TAB_UNDERLINE_SHADOW
+			{4259855, 4259856}, //BONDS_POUCH_SEPERATOR_LINE & BONDS_POUCH_SEPERATOR_LINE_SHADOW
 		};
 		static final int[][] PVP_ARENA_BORDER_COMPONENT_IDS = {
 			{49676396, 49676318, 49676350, 49676382, 49676300, 49676332, 49676364}, //misc borders
@@ -579,13 +716,13 @@ public enum WidgetOverride
 	{
 		static final int[][] GE_BORDER = {
 			{1, 4, 0, 3}, //GE_BORDER_BUY_INNER/GE_BORDER_BUY_OUTER & GE_BORDER_SELL_INNER/GE_BORDER_SELL_OUTER
-			{15, 17, 24, 27, 34},//GE_BORDER_MAKE_OFFER_BUY_OUTLINE
-			{14, 16, 23, 26, 33},//GE_BORDER_MAKE_OFFER_BUY_OUTLINE_SHADOW
-			{1, 3, 10, 13, 20},//GE_BORDER_OFFER_STATUS_OUTLINE
-			{0, 2, 9, 12, 19},//GE_BORDER_OFFER_STATUS_OUTLINE_SHADOW
+			{15, 17, 24, 27, 34}, //GE_BORDER_MAKE_OFFER_BUY_OUTLINE
+			{14, 16, 23, 26, 33}, //GE_BORDER_MAKE_OFFER_BUY_OUTLINE_SHADOW
+			{1, 3, 10, 13, 20}, //GE_BORDER_OFFER_STATUS_OUTLINE
+			{0, 2, 9, 12, 19}, //GE_BORDER_OFFER_STATUS_OUTLINE_SHADOW
 		};
 		static final int[][] MAKE_ALL_CHATBOX = {
-			{29, 0},//MAKE_ALL_BACKGROUND_HOVER & MAKE_ALL_BACKGROUND_CLICKED
+			{29, 0}, //MAKE_ALL_BACKGROUND_HOVER & MAKE_ALL_BACKGROUND_CLICKED
 			{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, //MAKE_ALL_BACKGROUND_HOVER_2
 		};
 		static final int[][] CHATBOX_SEPARATOR_LINE = {
@@ -597,19 +734,19 @@ public enum WidgetOverride
 			{15, 27, 39, 51, 63, 75, 87, 99, 111, 123, 135, 147} //ACHIEVEMENT_DIARY_PROGRESS_BORDER
 		};
 		static final int[][] ITEMS_KEPT_ON_DEATH = {
-			{0, 2, 4},//ITEMS_KEPT_ON_DEATH_BORDER_INNER
-			{1, 3, 5}//ITEMS_KEPT_ON_DEATH_BORDER_OUTER
+			{0, 2, 4}, //ITEMS_KEPT_ON_DEATH_BORDER_INNER
+			{1, 3, 5} //ITEMS_KEPT_ON_DEATH_BORDER_OUTER
 		};
 		static final int[] FORESTRY_SHOP = {
 			0, 12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144, 156, 168, 180, 192, //forestry 1
 			204, 216, 228, 240, 252, //forestry 2
 
 			264, 276, 288, 300, 312, 324, 336, 348, 360, 372, 384, 396, 408, 420, 432, //bounty hunter 1
-			444, 456, 468, 480, 492, 504, 516, 528, 540, 552, 564,//bounty hunter 2
+			444, 456, 468, 480, 492, 504, 516, 528, 540, 552, 564, //bounty hunter 2
 		};
 		static final int[] FORESTRY_BAG = {
 			0, 12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144, 156, 168, 180, 192,
-			204/*, 216, 228, 240, 252, 264, 276, */ //forestry 2 removed the trinkets to spawn events
+			204 /*, 216, 228, 240, 252, 264, 276, */ //forestry 2 removed the trinkets to spawn events
 		};
 		static final int[] GIANTS_FOUNDRY = {
 			0, 13, 26, 39, 52, 65, 78, 91, 104, 117, 130, 143, 156, 169, 182, 195, 208, 221, 234, 247, 260, 273, 286, 299
