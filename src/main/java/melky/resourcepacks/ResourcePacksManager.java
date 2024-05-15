@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
@@ -45,7 +46,9 @@ import melky.resourcepacks.hub.ResourcePacksClient;
 import net.runelite.api.Client;
 import net.runelite.api.SpriteID;
 import net.runelite.api.SpritePixels;
+import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetUtil;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.config.RuneLiteConfig;
@@ -377,6 +380,15 @@ public class ResourcePacksManager
 
 			if (widget != null)
 			{
+				if (widgetResize.getChildIndex() != null)
+				{
+					Widget child = widget.getChild(widgetResize.getChildIndex());
+					if (child != null)
+					{
+						widget = child;
+					}
+				}
+
 				if (widgetResize.getOriginalX() != null)
 				{
 					widget.setOriginalX(modify ? widgetResize.getModifiedX() : widgetResize.getOriginalX());
@@ -394,11 +406,9 @@ public class ResourcePacksManager
 
 				if (widgetResize.getOriginalHeight() != null)
 				{
-					widget.setOriginalWidth(modify ? widgetResize.getModifiedHeight() : widgetResize.getOriginalHeight());
+					widget.setOriginalHeight(modify ? widgetResize.getModifiedHeight() : widgetResize.getOriginalHeight());
 				}
-			}
-			if (widget != null)
-			{
+
 				widget.revalidate();
 			}
 		}
@@ -729,28 +739,27 @@ public class ResourcePacksManager
 
 	public void addPropertyToWidget(WidgetOverride widgetOverride)
 	{
-		int property;
+		int color = widgetOverride.getDefaultColor();
 		if (colorProperties.containsKey(widgetOverride.name().toLowerCase()))
 		{
-			String widgetProperty = colorProperties.getProperty(widgetOverride.name().toLowerCase());
-			if (!widgetProperty.isEmpty())
+			String property = colorProperties.getProperty(widgetOverride.name().toLowerCase());
+			Color hex = ColorUtil.fromHex(property);
+			if (!property.isEmpty())
 			{
-				property = Integer.decode(widgetProperty);
-			}
-			else
-			{
-				property = widgetOverride.getDefaultColor();
+				if (hex != null && ColorUtil.isAlphaHex(property))
+				{
+					color = hex.getRGB();
+				}
+				else
+				{
+					color = Integer.decode(property);
+				}
 			}
 		}
-		else
+		for (Integer override : widgetOverride.getComponentId())
 		{
-			property = widgetOverride.getDefaultColor();
-		}
-
-		for (Integer childId : widgetOverride.getWidgetChildIds())
-		{
-			Widget widgetToOverride = client.getWidget(widgetOverride.getWidgetInterfaceId(), childId);
-			if (widgetToOverride == null)
+			Widget widget = client.getWidget(override);
+			if (widget == null)
 			{
 				continue;
 			}
@@ -759,19 +768,40 @@ public class ResourcePacksManager
 			{
 				for (int arrayId : widgetOverride.getWidgetArrayIds())
 				{
-					Widget arrayWidget = widgetToOverride.getChild(arrayId);
-					if (arrayWidget == null || arrayWidget.getTextColor() == -1 || arrayWidget.getTextColor() == property)
+					Widget child = widget.getChild(arrayId);
+					if (child == null || child.getTextColor() == -1 || child.getTextColor() == color)
 					{
 						continue;
 					}
-					arrayWidget.setTextColor(property);
+					if (override == ComponentID.CHATBOX_TRANSPARENT_BACKGROUND_LINES
+						&& child.getWidth() != widgetOverride.getOriginalWidth())
+					{
+						continue;
+					}
+					if ((override == WidgetOverride.ComponentId.FORESTRY_BAG_BUTTON_COMPONENT_ID
+						|| override == WidgetOverride.ComponentId.FORESTRY_SHOP_BUTTON_COMPONENT_ID
+						|| override == WidgetOverride.ComponentId.GIANTS_FOUNDRY_SHOP_BUTTON_COMPONENT_ID
+						|| override == WidgetOverride.ComponentId.FORTIS_COLOSSEUM_MODIFIERS_COMPONENT_IDS[0]
+						|| override == WidgetOverride.ComponentId.FORTIS_COLOSSEUM_MODIFIERS_COMPONENT_IDS[1]
+						|| override == WidgetOverride.ComponentId.FORTIS_COLOSSEUM_MODIFIERS_COMPONENT_IDS[2]
+					)
+						&& child.getTextColor() != widgetOverride.getDefaultColor())
+					{
+						continue;
+					}
+					if (WidgetUtil.componentToInterface(override) == WidgetUtil.componentToInterface(WidgetOverride.ComponentId.SMITHING_COMPONENT_IDS[0])
+						&& !Objects.equals(child.getText(), ""))
+					{
+						continue;
+					}
+					child.setTextColor(color);
 				}
 			}
 			else
 			{
-				if (widgetToOverride.getTextColor() != -1 || widgetToOverride.getTextColor() != property)
+				if (widget.getTextColor() != -1 || widget.getTextColor() != color)
 				{
-					widgetToOverride.setTextColor(property);
+					widget.setTextColor(color);
 				}
 			}
 		}
